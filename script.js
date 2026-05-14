@@ -1,5 +1,3 @@
-
-
 function adicionarTarefa() {
 
     // Pegando o input
@@ -13,7 +11,6 @@ function adicionarTarefa() {
         alert("Digite uma tarefa!");
         return;
     }
-
 
     // Pegando a lista
     let lista = document.getElementById("lista");
