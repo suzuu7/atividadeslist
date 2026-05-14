@@ -99,6 +99,77 @@ function atualizarContador() {
     contador.textContent = lista.children.length;
 }
 
+as as tarefas
+function limparTudo() {
+    const lista = document.getElementById('lista');
+    const totalTarefas = lista.children.length;
+    
+    if (totalTarefas === 0) {
+        alert('✨ Não há tarefas para limpar! ✨');
+        return;
+    }
+    
+    // Criar modal de confirmação
+    const modal = document.createElement('div');
+    modal.className = 'modal-confirmar';
+    modal.innerHTML = `
+        <div class="modal-conteudo">
+            <p>🐝 Tem certeza que deseja limpar todas as ${totalTarefas} tarefa${totalTarefas > 1 ? 's' : ''}? 🧹</p>
+            <div class="modal-botoes">
+                <button onclick="this.closest('.modal-confirmar').remove()">Cancelar</button>
+                <button id="confirmarLimpar">Sim, limpar tudo</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Adicionar evento ao botão confirmar
+    document.getElementById('confirmarLimpar').onclick = function() {
+        // Animação de saída das tarefas
+        const tarefas = document.querySelectorAll('#lista li');
+        tarefas.forEach((tarefa, index) => {
+            setTimeout(() => {
+                tarefa.style.transform = 'translateX(100%)';
+                tarefa.style.opacity = '0';
+                setTimeout(() => {
+                    if (tarefa.parentNode) {
+                        tarefa.remove();
+                    }
+                }, 200);
+            }, index * 50);
+        });
+        
+        // Atualizar contador após limpar
+        setTimeout(() => {
+            atualizarContador();
+            // Mostrar mensagem temporária
+            const msgTemp = document.createElement('div');
+            msgTemp.textContent = '🌸 Todas as tarefas foram limpas! 🌸';
+            msgTemp.style.position = 'fixed';
+            msgTemp.style.bottom = '20px';
+            msgTemp.style.left = '50%';
+            msgTemp.style.transform = 'translateX(-50%)';
+            msgTemp.style.background = '#f0d86e';
+            msgTemp.style.color = '#8b6914';
+            msgTemp.style.padding = '10px 20px';
+            msgTemp.style.borderRadius = '25px';
+            msgTemp.style.fontWeight = 'bold';
+            msgTemp.style.zIndex = '1000';
+            msgTemp.style.animation = 'fadeIn 0.3s ease';
+            document.body.appendChild(msgTemp);
+            
+            setTimeout(() => {
+                msgTemp.style.opacity = '0';
+                setTimeout(() => msgTemp.remove(), 300);
+            }, 2000);
+        }, tarefas.length * 50 + 100);
+        
+        // Fechar modal
+        modal.remove();
+    };
+}
+
 function limparTarefas() {
     tarefas = [];
     atualizarLista();
