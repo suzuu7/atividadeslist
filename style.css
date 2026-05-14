@@ -286,3 +286,146 @@ li.concluida::before {
     content: "✓";
     color: #d4a017;
 }
+
+/* Container para os botões */
+.input-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Estilo específico para o botão limpar */
+.botao-limpar {
+    background: linear-gradient(135deg, #ffaa66 0%, #ff884d 100%);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    margin-left: 0;
+}
+
+.botao-limpar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 136, 77, 0.3);
+    background: linear-gradient(135deg, #ff884d 0%, #ff6633 100%);
+}
+
+/* Modal de confirmação personalizado */
+.modal-confirmar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-conteudo {
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-conteudo p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #8b6914;
+}
+
+.modal-conteudo p::before {
+    content: "🧹 ";
+    font-size: 1.5rem;
+}
+
+.modal-botoes {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.modal-botoes button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.modal-botoes button:first-child {
+    background: #f0d86e;
+    color: #8b6914;
+}
+
+.modal-botoes button:first-child:hover {
+    background: #e6c342;
+    transform: scale(1.05);
+}
+
+.modal-botoes button:last-child {
+    background: #ff884d;
+    color: white;
+}
+
+.modal-botoes button:last-child:hover {
+    background: #ff6633;
+    transform: scale(1.05);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .input-group {
+        flex-direction: column;
+    }
+    
+    .input-group input,
+    .input-group button {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    .modal-conteudo {
+        margin: 20px;
+        padding: 20px;
+    }
+}
