@@ -59,6 +59,15 @@ function atualizarContador() {
     contador.innerHTML = lista.children.length;
 }
 
+function limparTudo() {
+    const lista = document.getElementById('lista');
+    const totalTarefas = lista.children.length;
+    
+    if (totalTarefas === 0) {
+        alert('✨ Não há tarefas para limpar! ✨');
+        return;
+    }
+
 // Função original de adicionar tarefa
 function adicionarTarefa() {
     const input = document.getElementById('tarefa');
