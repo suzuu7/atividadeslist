@@ -11,17 +11,16 @@
 
     <h1>Lista de Tarefas</h1>
 
-    <p>
-
-    <input type="text" id="tarefa" placeholder="Digite uma tarefa">
-
-    <button onclick="adicionarTarefa()">
-        Adicionar
-    </button>
-    <button onclick="limparTudo()" class="botao-limpar">
+    <div class="input-group">
+        <input type="text" id="tarefa" placeholder="Digite uma tarefa">
+        <button onclick="adicionarTarefa()">
+            Adicionar
+        </button>
+        <button onclick="limparTudo()" class="botao-limpar">
             🧹 Limpar Tudo
         </button>
     </div>
+
     <p>
         Total de tarefas:
         <span id="contador">0</span>
