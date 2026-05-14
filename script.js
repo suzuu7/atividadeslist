@@ -1,3 +1,4 @@
+//vai funcionar sim
 let tarefas = [];
 
 let tarefasSalvas = localStorage.getItem("tarefas");
