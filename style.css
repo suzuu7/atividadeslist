@@ -102,24 +102,7 @@ input:focus {
     box-shadow: 0 0 10px rgba(212, 160, 23, 0.3);
 }
 
-.botao-limpar {
-    background: linear-gradient(135deg, #ffaa66 0%, #ff884d 100%);
-    color: #fff;
-    border: none;
-    padding: 12px 25px;
-    font-size: 1rem;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
-    margin-left: 0;
-}
 
-.botao-limpar:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 136, 77, 0.3);
-    background: linear-gradient(135deg, #ff884d 0%, #ff6633 100%);
-}
 
 button {
     background: linear-gradient(135deg, #f0d86e 0%, #e6c342 100%);
