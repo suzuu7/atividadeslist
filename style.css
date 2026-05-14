@@ -1,71 +1,428 @@
-body {
-    font-family: 'Comic Sans MS', cursive;
-    background: linear-gradient(to bottom, #fff8c6, #ffe680);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Reset básico e estilo geral */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.container {
-    background-color: #fffdf2;
-    padding: 30px;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #fff9e6 0%, #fff3d1 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Girassóis decorativos no fundo */
+body::before {
+    content: "🌻";
+    position: fixed;
+    font-size: 80px;
+    bottom: 20px;
+    left: 20px;
+    opacity: 0.3;
+    animation: girar 20s infinite linear;
+}
+
+body::after {
+    content: "🌻";
+    position: fixed;
+    font-size: 60px;
+    top: 20px;
+    right: 20px;
+    opacity: 0.3;
+    animation: girar 25s infinite linear reverse;
+}
+
+@keyframes girar {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Mais girassóis espalhados */
+.girassol-decor {
+    position: fixed;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container-principal {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 25px;
-    width: 400px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.15);
-    border: 4px dashed #f4c542;
-    text-align: center;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(5px);
 }
 
 h1 {
-    color: #d89b00;
+    text-align: center;
+    color: #d4a017;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+h1::before {
+    content: "🐝";
+    font-size: 2rem;
+    margin-right: 15px;
+}
+
+h1::after {
+    content: "🐝";
+    font-size: 2rem;
+    margin-left: 15px;
 }
 
 input {
-    width: 70%;
-    padding: 12px;
-    border-radius: 15px;
-    border: 2px solid #f4c542;
+    width: calc(100% - 120px);
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: 2px solid #f0d86e;
+    border-radius: 25px;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #d4a017;
+    box-shadow: 0 0 10px rgba(212, 160, 23, 0.3);
 }
 
 button {
-    padding: 12px;
+    background: linear-gradient(135deg, #f0d86e 0%, #e6c342 100%);
+    color: #8b6914;
     border: none;
-    border-radius: 15px;
-    background-color: #ffd447;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 25px;
     cursor: pointer;
-    margin-top: 10px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    margin-left: 10px;
 }
 
 button:hover {
-    background-color: #ffbf00;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 160, 23, 0.3);
+    background: linear-gradient(135deg, #e6c342 0%, #d4a017 100%);
 }
 
-.limpar {
-    background-color: #ffb347;
+p {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.1rem;
+    color: #8b6914;
+    font-weight: bold;
 }
 
-.limpar:hover {
-    background-color: #ff9500;
+#contador {
+    background: #f0d86e;
+    padding: 5px 12px;
+    border-radius: 20px;
+    color: #8b6914;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 ul {
     list-style: none;
-    padding: 0;
+    margin-top: 20px;
 }
 
 li {
-    background-color: #fff4b3;
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 15px;
+    background: white;
+    margin: 10px 0;
+    padding: 12px 20px;
+    border-radius: 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.3s ease;
+    border-left: 5px solid #f0d86e;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
 }
 
-.concluida {
-    text-decoration: line-through;
+li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(212, 160, 23, 0.2);
+}
+
+/* Abelhinha voando nas tarefas */
+li::before {
+    content: "🐝";
+    position: absolute;
+    left: -30px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+li:hover::before {
+    left: 10px;
+    opacity: 0.8;
+}
+
+.tarefa-texto {
+    flex: 1;
+    margin-left: 25px;
+    color: #6b4c0a;
+}
+
+.botao-remover {
+    background: #ffd966;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: #8b6914;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.botao-remover:hover {
+    background: #ffb347;
+    transform: scale(1.05);
+}
+
+/* Abelhinha voando aleatoriamente */
+@keyframes voar {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(100px, -50px) rotate(10deg);
+    }
+    50% {
+        transform: translate(50px, 100px) rotate(-10deg);
+    }
+    75% {
+        transform: translate(-50px, 50px) rotate(5deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+.abelha-voadora {
+    position: fixed;
+    font-size: 24px;
+    pointer-events: none;
+    z-index: 2;
+    animation: voar 15s infinite ease-in-out;
+}
+
+/* Adicionando abelhas voadoras com JavaScript */
+.abelha {
+    position: fixed;
+    font-size: 20px;
     opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container-principal {
+        margin: 10px;
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    input {
+        width: calc(100% - 100px);
+    }
+    
+    button {
+        padding: 10px 20px;
+    }
+}
+
+/* Efeito de sol radiante */
+@keyframes radiante {
+    0% {
+        box-shadow: 0 0 0 0 rgba(240, 216, 110, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(240, 216, 110, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(240, 216, 110, 0);
+    }
+}
+
+h1, button {
+    animation: radiante 2s infinite;
+}
+
+/* Estilo para tarefas concluídas (opcional, se você implementar no JS) */
+li.concluida {
+    opacity: 0.7;
+    background: #f5f0e0;
+    text-decoration: line-through;
+}
+
+li.concluida::before {
+    content: "✓";
+    color: #d4a017;
+}
+/* Container para os botões */
+.input-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Estilo específico para o botão limpar */
+.botao-limpar {
+    background: linear-gradient(135deg, #ffaa66 0%, #ff884d 100%);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    margin-left: 0;
+}
+
+.botao-limpar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 136, 77, 0.3);
+    background: linear-gradient(135deg, #ff884d 0%, #ff6633 100%);
+}
+
+/* Modal de confirmação personalizado */
+.modal-confirmar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-conteudo {
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-conteudo p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #8b6914;
+}
+
+.modal-conteudo p::before {
+    content: "🧹 ";
+    font-size: 1.5rem;
+}
+
+.modal-botoes {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.modal-botoes button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.modal-botoes button:first-child {
+    background: #f0d86e;
+    color: #8b6914;
+}
+
+.modal-botoes button:first-child:hover {
+    background: #e6c342;
+    transform: scale(1.05);
+}
+
+.modal-botoes button:last-child {
+    background: #ff884d;
+    color: white;
+}
+
+.modal-botoes button:last-child:hover {
+    background: #ff6633;
+    transform: scale(1.05);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .input-group {
+        flex-direction: column;
+    }
+    
+    .input-group input,
+    .input-group button {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    .modal-conteudo {
+        margin: 20px;
+        padding: 20px;
+    }
 }
