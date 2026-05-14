@@ -1,16 +1,4 @@
-//vai funcionar sim
-let tarefas = [];
 
-let tarefasSalvas = localStorage.getItem("tarefas");
-
-if (tarefasSalvas) {
-    tarefas = JSON.parse(tarefasSalvas);
-
-    mostrarTarefas();
-}
-
-JSON.stringify()
-JSON.parse()
 
 function adicionarTarefa() {
 
@@ -26,87 +14,6 @@ function adicionarTarefa() {
         return;
     }
 
-    // Adiciona no array
-    tarefas.push({
-        texto: texto,
-        concluida: false
-    });
-
-    salvarTarefas();
-
-    mostrarTarefas();
-
-    input.value = "";
-}
-
-function salvarTarefas() {
-
-    localStorage.setItem(
-        "tarefas",
-        JSON.stringify(tarefas)
-    );
-}
-
-function mostrarTarefas() {
-
-    let lista = document.getElementById("lista");
-
-    lista.innerHTML = "";
-
-    tarefas.forEach(function(tarefa, indice) {
-
-        let li = document.createElement("li");
-
-        li.innerHTML = tarefa.texto;
-
-        // Se concluída
-        if (tarefa.concluida) {
-            li.classList.add("concluida");
-        }
-
-        // Clique para concluir
-        li.onclick = function() {
-
-            tarefas[indice].concluida =
-                !tarefas[indice].concluida;
-
-            salvarTarefas();
-
-            mostrarTarefas();
-        }
-
-        // Botão remover
-        let botao = document.createElement("button");
-
-        botao.innerHTML = "Remover";
-
-        botao.onclick = function(event) {
-
-            // Impede conflito com clique do li
-            event.stopPropagation();
-
-            tarefas.splice(indice, 1);
-
-            salvarTarefas();
-
-            mostrarTarefas();
-        }
-
-        li.appendChild(botao);
-
-        lista.appendChild(li);
-    });
-
-    atualizarContador();
-}
-
-function atualizarContador() {
-
-    let contador =
-        document.getElementById("contador");
-
-    contador.innerHTML = tarefas.length;
-}
 
     // Pegando a lista
     let lista = document.getElementById("lista");
