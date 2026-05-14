@@ -1,3 +1,13 @@
+let tarefas = [];
+
+let tarefasSalvas = localStorage.getItem("tarefas");
+
+if (tarefasSalvas) {
+    tarefas = JSON.parse(tarefasSalvas);
+
+    mostrarTarefas();
+}
+
 function adicionarTarefa() {
 
     // Pegando o input
